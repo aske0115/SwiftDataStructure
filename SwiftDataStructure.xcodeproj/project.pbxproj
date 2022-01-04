@@ -19,6 +19,8 @@
 		D08848DF27846889000E86E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D08848E12784688A000E86E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D08848E42784688A000E86E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D08848EC278468B8000E86E1 /* Queue.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Queue.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D08848EE27846B60000E86E1 /* Stack.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Stack.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,8 @@
 		D08848DC27846889000E86E1 /* SwiftDataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				D08848ED27846B51000E86E1 /* Stack */,
+				D08848EB278468AB000E86E1 /* Queue */,
 				D08848DD27846889000E86E1 /* SwiftDataStructureApp.swift */,
 				D08848DF27846889000E86E1 /* ContentView.swift */,
 				D08848E12784688A000E86E1 /* Assets.xcassets */,
@@ -65,6 +69,22 @@
 				D08848E42784688A000E86E1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D08848EB278468AB000E86E1 /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				D08848EC278468B8000E86E1 /* Queue.playground */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
+		D08848ED27846B51000E86E1 /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				D08848EE27846B60000E86E1 /* Stack.playground */,
+			);
+			path = Stack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
