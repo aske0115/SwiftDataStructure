@@ -1,37 +1,61 @@
-class SingleLinkedList<T: Equatable>{
-    
+import Darwin
+class Node<T : Equatable> : Equatable {
     var v: T
-    var next: SingleLinkedList?
-    private var head: SingleLinkedList?
-    private var tail: SingleLinkedList?
+    var next: Node?
+    
+    static func == (lhs: Node<T>, rhs: Node<T>) -> Bool {
+        return lhs.v == rhs.v && lhs.next == rhs.next
+    }
     
     init(value: T) {
         v = value
-        head = self
-        tail = self
     }
+}
+
+
+class SingleLinkedList<T: Equatable> {
     
-    func find(v: T) -> SingleLinkedList? {
+    //rootNode
+    private var head: Node<T>?
+    private var tail: Node<T>?
+    
+    init() { }
+    
+    func find(v: T) -> [Node<T>] {
         var head = self.head
-        
+        var findElements:[Node<T>] = []
         while head != nil {
             if head?.v == v {
-                return head
+                findElements.append(head!)
+//                return head
             }
             head = head?.next
         }
-        return nil
+        return findElements
     }
     
     func add(v: T) {
-        let addNode = SingleLinkedList(value: v)
+        let addNode = Node(value: v)
         if let tail = self.tail {
             tail.next = addNode
             self.tail = addNode
+        } else {
+            head = addNode
+            tail = addNode
         }
     }
     
     func remove(v: T) {
+        
+        /*
+         1. 지우려는게 head야
+            1-1. 근데 head다음에 next가 있으면 지우고 next를 head로 변경
+            1-2. head다음에 next가 없으면 지우지못하게 하자
+         2. 지우러는게 나의 next야
+            2-1. next.next를 나의 next로 변경 (그러면 노드가 다다음으로 연결됨)
+            2-2. next.next를 변경했는데 next의 next가 없어 (마지막이라는 소리) 그럼 그놈을 tail로 설정
+            2-3. next의 next가 없는데 value도 맞아.. (그럼 개도 지워져야하고 tail은 내가되어야함)
+         */
         var head = self.head
         
         if head?.next == nil && head?.v == v {
@@ -39,10 +63,15 @@ class SingleLinkedList<T: Equatable>{
         }
         
         while head != nil {
-            if let next = head?.next, next.v == v {
+            //지우려는 값이 head이면 head.next를 head로 설정
+            if head?.v == v && head == self.head {
+                self.head = head?.next
+            //지우려는값이 헤드는 아닌데 head.next가있고 그 값이 지우려는 값이면, head.next에 head.next.next를 바라보게 변경하여 해당 노드 삭제
+            } else if let next = head?.next, next.v == v {
                 head?.next = next.next
             }
             
+            //head의 next.next가 없고, head.next가 지울값이면.. (테일을 지워야 할 경우, 지금바라보는 node를 tail로 설정해준다.
             if head?.next?.next == nil, head?.next?.v == v{
                 tail = head
                 head?.next = nil
@@ -57,32 +86,35 @@ class SingleLinkedList<T: Equatable>{
             print("value = \(head!.v)")
             head = head?.next
         }
-        print("=====\n")
+        print("============\n")
     }
 }
 
 
+let nodeTest = SingleLinkedList<Int>()
+nodeTest.printNode()
 
-let node = SingleLinkedList<Int>(value: 10)
-node.add(v: 20)
-node.add(v: 1)
-node.add(v: 3)
+nodeTest.add(v: 10)
+nodeTest.add(v: 10)
+nodeTest.add(v: 11)
+nodeTest.add(v: 10)
+nodeTest.add(v: 12)
+nodeTest.add(v: 10)
+nodeTest.add(v: 10)
 
-node.printNode()
+nodeTest.printNode()
 
-let find = node.find(v: 1)
+nodeTest.find(v: 10).forEach { node in
+    print(node.next?.v ?? "Empty")
+}
 
-node.add(v: 5)
-node.add(v: 4)
-node.add(v: 5)
-node.add(v: 5)
+nodeTest.remove(v: 10)
+
+nodeTest.printNode()
 
 
-node.printNode()
+nodeTest.add(v: 12)
+nodeTest.add(v: 10)
+nodeTest.add(v: 10)
 
-node.remove(v: 5)
-
-node.printNode()
-node.add(v: 15)
-node.add(v: 25)
-node.printNode()
+nodeTest.printNode()
