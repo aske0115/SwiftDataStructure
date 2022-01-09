@@ -10,6 +10,10 @@ class Node<T : Equatable> : Equatable {
     init(value: T) {
         v = value
     }
+    
+    deinit {
+        print("\(v) is Gone.., byebye...")
+    }
 }
 
 
@@ -70,7 +74,6 @@ class SingleLinkedList<T: Equatable> {
             } else if let next = head?.next, next.v == v {
                 head?.next = next.next
             }
-            
             //head의 next.next가 없고, head.next가 지울값이면.. (테일을 지워야 할 경우, 지금바라보는 node를 tail로 설정해준다.
             if head?.next?.next == nil, head?.next?.v == v{
                 tail = head
