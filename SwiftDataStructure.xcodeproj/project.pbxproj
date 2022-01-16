@@ -22,6 +22,7 @@
 		D08848E42784688A000E86E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D08848EC278468B8000E86E1 /* Queue.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Queue.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D08848EE27846B60000E86E1 /* Stack.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Stack.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D0CF063A27943BB9003ABE6E /* BinarySearchTree.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BinarySearchTree.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 		D08848DC27846889000E86E1 /* SwiftDataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				D0CF063927943BA4003ABE6E /* Binary_Tree */,
 				D046ABFB2787308D00E9441A /* LinkedList */,
 				D08848ED27846B51000E86E1 /* Stack */,
 				D08848EB278468AB000E86E1 /* Queue */,
@@ -95,6 +97,14 @@
 				D08848EE27846B60000E86E1 /* Stack.playground */,
 			);
 			path = Stack;
+			sourceTree = "<group>";
+		};
+		D0CF063927943BA4003ABE6E /* Binary_Tree */ = {
+			isa = PBXGroup;
+			children = (
+				D0CF063A27943BB9003ABE6E /* BinarySearchTree.playground */,
+			);
+			path = Binary_Tree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
