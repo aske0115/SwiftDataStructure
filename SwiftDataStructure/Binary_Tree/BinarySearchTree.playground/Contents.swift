@@ -31,42 +31,48 @@ class BinarySearchTree<T: Equatable & Comparable> {
     
     func insert_data(item: T) {
         var currentNode = root
-            while true {
-                //루트보다 넣을값이 크면 오른쪽으로..
-                if item > currentNode.data {
-                    if currentNode.right == nil {
-                        currentNode.right = Node<T>(item: item)
-                        break
-                    } else {
-                        currentNode = currentNode.right!
-                        continue
-                    }
-                } else if item < currentNode.data {
-                    if currentNode.left == nil {
-                        currentNode.left = Node<T>(item: item)
-                        break
-                    } else {
-                        currentNode = currentNode.left!
-                        continue
-                    }
+        while true {
+            //루트보다 넣을값이 크면 오른쪽으로..
+            if item > currentNode.data {
+                if currentNode.right == nil {
+                    currentNode.right = Node<T>(item: item)
+                    break
+                } else {
+                    currentNode = currentNode.right!
+                }
+            } else if item < currentNode.data {
+                if currentNode.left == nil {
+                    currentNode.left = Node<T>(item: item)
+                    break
+                } else {
+                    currentNode = currentNode.left!
                 }
             }
+        }
     }
     
     func search_data(item: T) -> Node<T>? {
-        if root.data == item {
-            return root
+        var head:Node<T>? = root
+        while head != nil {
+            if head!.data == item {
+                return head
+            }
+            else if item < head!.data {
+                head = head!.left
+            } else {
+                head = head!.right
+            }
         }
         return nil
     }
     
     func printTree() {
-        var rt: Node<T>? = root.left
+        var rt: Node<T>? = root
         while rt != nil {
             print("rootData left: \(rt?.data)")
             rt = rt?.left
         }
-        
+
         rt = root.right
         while rt != nil {
             print("rootData right: \(rt?.data)")
@@ -86,3 +92,6 @@ sol.insert_data(item: 28)
 sol.insert_data(item: 11)
 sol.insert_data(item: 5)
 sol.printTree()
+
+sol.search_data(item: 11)
+
