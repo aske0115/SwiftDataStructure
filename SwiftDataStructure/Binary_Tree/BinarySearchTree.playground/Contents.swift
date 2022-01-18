@@ -67,6 +67,10 @@ class BinarySearchTree<T: Equatable & Comparable> {
     }
     
     func printTree() {
+        //각 레벨을 훑고가지 않으니.. 문제가 있다.
+        //수정요망!
+        #warning("고쳐라..")
+        
         var rt: Node<T>? = root
         while rt != nil {
             print("rootData left: \(rt?.data)")
@@ -79,19 +83,135 @@ class BinarySearchTree<T: Equatable & Comparable> {
             rt = rt?.right
         }
     }
-
+    
+    
+    func deleteData(_ item: T) {
+        var search_node = false
+        var currentNode: Node<T>? = root
+        var parentNode: Node<T>? = root
+        
+        while currentNode != nil {
+            if currentNode!.data == item {
+                search_node = true
+                break
+            }
+            else if item < currentNode!.data {
+                parentNode = currentNode
+                currentNode = currentNode!.left
+            } else {
+                parentNode = currentNode
+                currentNode = currentNode!.right
+            }
+        }
+        
+        if !search_node {
+            return
+        }
+        
+        //leaf node
+        if currentNode?.left == nil && currentNode?.right == nil {
+            if currentNode == parentNode?.left {
+                parentNode?.left = nil
+            } else {
+                parentNode?.right = nil
+            }
+        }
+        //only left node
+        else if currentNode?.left != nil && currentNode?.right == nil {
+            if currentNode == parentNode?.left {
+                parentNode?.left = currentNode?.left
+            } else {
+                parentNode?.right = currentNode?.left
+            }
+        }
+        //only right node
+        else if currentNode?.left == nil && currentNode?.right !== nil {
+            if currentNode == parentNode?.left {
+                parentNode?.left = currentNode?.right
+            } else {
+                parentNode?.right = currentNode?.right
+            }
+        }
+        //have two child node
+        else if currentNode?.left != nil && currentNode?.right !== nil {
+            //지울 노드가 parent의 왼쪽인 경우,
+            if currentNode == parentNode?.left {
+                
+                //가장 작은걸 찾아야하는 노드와 그 페어런트를 저장
+                var changeNode = currentNode?.right
+                var changeNodeParent = currentNode
+                
+                
+                //더 작은수가 없을떄 까지 반복문.
+                while changeNode?.left != nil {
+                    changeNodeParent = changeNode
+                    changeNode = changeNode?.left
+                }
+                
+        
+                //부모노드의 왼쪽(지울노드)에 가장 작은 노드를 연결
+                parentNode?.left = changeNode
+                
+                //가장 작은 노드의 왼쪽에 지울노드의 왼쪽을 연결
+                changeNode?.left = currentNode?.left
+                
+                //가장 작은 노드의 parent 노드의 왼쪽에 가장 작은 노드가 들고있던 오른쪽 노드를 연결
+                changeNodeParent?.left =  changeNode?.right
+                
+                //가장 작은 노드의 오른쪽에 가장작은 노드의 부모 노드를 연결
+                changeNode?.right = changeNodeParent
+                
+            }
+            else if currentNode == parentNode?.right {
+                
+                //가장 작은걸 찾아야하는 노드와 그 페어런트를 저장
+                var changeNode = currentNode?.right
+                var changeNodeParent = currentNode?.right
+                
+                
+                //더 작은수가 없을떄 까지 반복문.
+                while changeNode?.left != nil {
+                    changeNodeParent = changeNode
+                    changeNode = changeNode?.left
+                }
+                
+                
+                //부모노드의 오른쪽(지울노드)에 가장 작은 노드를 연결
+                parentNode?.right = changeNode
+                
+                //가장 작은 노드의 parent 노드의 왼쪽에 가장 작은 노드가 들고있던 오른쪽 노드를 연결
+                changeNodeParent?.left =  changeNode?.right
+                
+                //바꿀 노드의 왼쪽에 지울노드의 왼쪽을 연결.
+                changeNode?.left = currentNode?.left
+                //가장 작은 노드의 왼쪽에 지울노드의 왼쪽을 연결
+                changeNode?.right = changeNodeParent
+            
+            }
+        }
+    }
 }
 
 
 //tree 공부하기 전에 느낌대로 만들어본 트리인데.. 애들재우러가야하니 이만.
 //tree공부 다 하고 다시 다듬어볼께요.
 
-let sol = BinarySearchTree<Int>(head: Node<Int>(item: 21))
-sol.insert_data(item: 14)
-sol.insert_data(item: 28)
+let sol = BinarySearchTree<Int>(head: Node<Int>(item: 10))
+sol.insert_data(item: 15)
+sol.insert_data(item: 13)
+sol.insert_data(item: 18)
 sol.insert_data(item: 11)
-sol.insert_data(item: 5)
+sol.insert_data(item: 12)
+
+sol.insert_data(item: 16)
+sol.insert_data(item: 19)
+sol.insert_data(item: 17)
 sol.printTree()
 
 sol.search_data(item: 11)
+sol.deleteData(15)
 
+
+sol.printTree()
+//
+sol.search_data(item: 15)
