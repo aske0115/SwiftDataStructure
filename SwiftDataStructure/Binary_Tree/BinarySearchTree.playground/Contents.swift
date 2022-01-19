@@ -67,21 +67,22 @@ class BinarySearchTree<T: Equatable & Comparable> {
     }
     
     func printTree() {
-        //각 레벨을 훑고가지 않으니.. 문제가 있다.
-        //수정요망!
-        #warning("고쳐라..")
+        printTree(root)
+    }
+    
+    private func printTree(_ node: Node<T>?) {
         
-        var rt: Node<T>? = root
-        while rt != nil {
-            print("rootData left: \(rt?.data)")
-            rt = rt?.left
+        guard let node = node else { return }
+        print("node.data \(node.data)")
+        if node.left != nil {
+            print("node.left.data \(node.left!.data)")
         }
-
-        rt = root.right
-        while rt != nil {
-            print("rootData right: \(rt?.data)")
-            rt = rt?.right
+        
+        if node.right != nil {
+            print("node.right.data \(node.right!.data)")
         }
+        printTree(node.left)
+        printTree(node.right)
     }
     
     
@@ -206,7 +207,7 @@ sol.insert_data(item: 12)
 sol.insert_data(item: 16)
 sol.insert_data(item: 19)
 sol.insert_data(item: 17)
-sol.printTree()
+//sol.printTree()
 
 sol.search_data(item: 11)
 sol.deleteData(15)
