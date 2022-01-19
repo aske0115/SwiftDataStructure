@@ -136,8 +136,8 @@ class BinarySearchTree<T: Equatable & Comparable> {
         //have two child node
         else if currentNode?.left != nil && currentNode?.right !== nil {
             //지울 노드가 parent의 왼쪽인 경우,
-            if currentNode == parentNode?.left {
-                
+            let isLeftNode = currentNode == parentNode?.left
+            
                 //가장 작은걸 찾아야하는 노드와 그 페어런트를 저장
                 var changeNode = currentNode?.right
                 var changeNodeParent = currentNode
@@ -150,8 +150,14 @@ class BinarySearchTree<T: Equatable & Comparable> {
                 }
                 
         
-                //부모노드의 왼쪽(지울노드)에 가장 작은 노드를 연결
-                parentNode?.left = changeNode
+                if isLeftNode {
+                    //부모노드의 왼쪽(지울노드)에 가장 작은 노드를 연결
+                    parentNode?.left = changeNode
+                } else {
+                    //부모노드의 오른쪽(지울노드)에 가장 작은 노드를 연결
+                    parentNode?.right = changeNode
+                }
+                
                 
                 //가장 작은 노드의 왼쪽에 지울노드의 왼쪽을 연결
                 changeNode?.left = currentNode?.left
@@ -161,34 +167,6 @@ class BinarySearchTree<T: Equatable & Comparable> {
                 
                 //가장 작은 노드의 오른쪽에 가장작은 노드의 부모 노드를 연결
                 changeNode?.right = changeNodeParent
-                
-            }
-            else if currentNode == parentNode?.right {
-                
-                //가장 작은걸 찾아야하는 노드와 그 페어런트를 저장
-                var changeNode = currentNode?.right
-                var changeNodeParent = currentNode?.right
-                
-                
-                //더 작은수가 없을떄 까지 반복문.
-                while changeNode?.left != nil {
-                    changeNodeParent = changeNode
-                    changeNode = changeNode?.left
-                }
-                
-                
-                //부모노드의 오른쪽(지울노드)에 가장 작은 노드를 연결
-                parentNode?.right = changeNode
-                
-                //가장 작은 노드의 parent 노드의 왼쪽에 가장 작은 노드가 들고있던 오른쪽 노드를 연결
-                changeNodeParent?.left =  changeNode?.right
-                
-                //바꿀 노드의 왼쪽에 지울노드의 왼쪽을 연결.
-                changeNode?.left = currentNode?.left
-                //가장 작은 노드의 왼쪽에 지울노드의 왼쪽을 연결
-                changeNode?.right = changeNodeParent
-            
-            }
         }
     }
 }
@@ -216,3 +194,5 @@ sol.deleteData(15)
 sol.printTree()
 //
 sol.search_data(item: 15)
+
+sol.printTree()
