@@ -1,3 +1,4 @@
+import Darwin
 class Node<T: Equatable & Comparable> : Equatable & Comparable {
     var data: T
     var left: Node?
@@ -47,6 +48,10 @@ class BinarySearchTree<T: Equatable & Comparable> {
                 } else {
                     currentNode = currentNode.left!
                 }
+            } else
+            {
+                
+                break
             }
         }
     }
@@ -71,7 +76,6 @@ class BinarySearchTree<T: Equatable & Comparable> {
     }
     
     private func printTree(_ node: Node<T>?) {
-        
         guard let node = node else { return }
         print("node.data \(node.data)")
         if node.left != nil {
@@ -175,24 +179,29 @@ class BinarySearchTree<T: Equatable & Comparable> {
 //tree 공부하기 전에 느낌대로 만들어본 트리인데.. 애들재우러가야하니 이만.
 //tree공부 다 하고 다시 다듬어볼께요.
 
-let sol = BinarySearchTree<Int>(head: Node<Int>(item: 10))
-sol.insert_data(item: 15)
-sol.insert_data(item: 13)
-sol.insert_data(item: 18)
-sol.insert_data(item: 11)
-sol.insert_data(item: 12)
 
-sol.insert_data(item: 16)
-sol.insert_data(item: 19)
-sol.insert_data(item: 17)
-//sol.printTree()
+var values:Set<Int> = []
+while values.count != 10 {
+    values.insert(Int.random(in: 0..<100))
+}
+
+print("values = \(values)")
+
+let sol = BinarySearchTree<Int>(head: Node<Int>(item: values.randomElement()!))
+
+for val in values {
+    sol.insert_data(item: val)
+}
+
+sol.printTree()
 
 sol.search_data(item: 11)
-sol.deleteData(15)
+
+let ss = values.randomElement()!
+
+sol.deleteData(ss)
 
 
 sol.printTree()
 //
 sol.search_data(item: 15)
-
-sol.printTree()
