@@ -15,6 +15,7 @@
 
 /* Begin PBXFileReference section */
 		D046ABFC2787309F00E9441A /* SingleLinkedList.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SingleLinkedList.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D05B19C827997A3E004BD414 /* Heap.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Heap.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D08848DA27846889000E86E1 /* SwiftDataStructure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataStructure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08848DD27846889000E86E1 /* SwiftDataStructureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataStructureApp.swift; sourceTree = "<group>"; };
 		D08848DF27846889000E86E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +45,14 @@
 			path = LinkedList;
 			sourceTree = "<group>";
 		};
+		D05B19C727997A30004BD414 /* Heap */ = {
+			isa = PBXGroup;
+			children = (
+				D05B19C827997A3E004BD414 /* Heap.playground */,
+			);
+			path = Heap;
+			sourceTree = "<group>";
+		};
 		D08848D127846888000E86E1 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +72,7 @@
 		D08848DC27846889000E86E1 /* SwiftDataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				D05B19C727997A30004BD414 /* Heap */,
 				D0CF063927943BA4003ABE6E /* Binary_Tree */,
 				D046ABFB2787308D00E9441A /* LinkedList */,
 				D08848ED27846B51000E86E1 /* Stack */,
